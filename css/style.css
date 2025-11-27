@@ -1139,3 +1139,11 @@ a:focus {
     color: #222222;
 }
 
+.skill-item .skill-icon {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 8px;
+    object-fit: contain;
+}
+

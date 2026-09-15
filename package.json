@@ -1,0 +1,14 @@
+{
+  "name": "jayesh-portfolio",
+  "private": true,
+  "type": "module",
+  "description": "Jayesh - PHP / Laravel Backend Developer portfolio (GitHub Pages)",
+  "scripts": {
+    "build": "php build.prod.php",
+    "build:dev": "php build.php",
+    "optimize:images": "node tools/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}

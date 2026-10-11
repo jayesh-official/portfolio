@@ -172,6 +172,8 @@
 
   /* ---------------- Typing effect ---------------- */
   var typedEl = document.getElementById("typed");
+  var typedWrap = typedEl ? typedEl.closest(".typed-wrap") : null;
+  var heroTitle = typedWrap ? typedWrap.closest(".hero-title") : null;
   var roles = ["Backend Developer", "Laravel Specialist", "API Architect", "Database Designer", "Full-Stack Engineer"];
   var ri = 0, ci = 0, deleting = false;
   function typeLoop() {
@@ -186,7 +188,61 @@
       else { deleting = false; ri = (ri + 1) % roles.length; setTimeout(typeLoop, 350); }
     }
   }
-  setTimeout(typeLoop, 900);
+
+  /* Keep the typed line on a single line across every screen size: scale the
+     hero title font down just enough for the longest role (plus cursor) to
+     fit its column, then reserve that one-line height so nothing ever jumps. */
+  function fitTypedLayout() {
+    if (!typedEl || !typedWrap || !heroTitle) return;
+    var prev = typedEl.textContent;
+
+    heroTitle.style.fontSize = "";
+    typedWrap.style.minHeight = "0";
+    typedWrap.style.whiteSpace = "nowrap";
+
+    for (var pass = 0; pass < 4; pass++) {
+      var need = 0;
+      for (var i = 0; i < roles.length; i++) {
+        typedEl.textContent = roles[i];
+        if (typedWrap.scrollWidth > need) need = typedWrap.scrollWidth;
+      }
+      var avail = heroTitle.clientWidth;
+      if (!need || !avail || need <= avail) break;
+      var cur = parseFloat(window.getComputedStyle(heroTitle).fontSize);
+      heroTitle.style.fontSize = (cur * (avail / need) * 0.99).toFixed(2) + "px";
+    }
+
+    typedWrap.style.whiteSpace = "";
+
+    var maxH = 0;
+    for (var j = 0; j < roles.length; j++) {
+      typedEl.textContent = roles[j];
+      if (typedWrap.offsetHeight > maxH) maxH = typedWrap.offsetHeight;
+    }
+    typedEl.textContent = prev;
+    typedWrap.style.minHeight = maxH ? maxH + "px" : "";
+  }
+
+  var typingStarted = false;
+  function startTyping() {
+    if (typingStarted) return;
+    typingStarted = true;
+    fitTypedLayout();
+    setTimeout(typeLoop, 900);
+  }
+
+  if (typedEl && document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { startTyping(); fitTypedLayout(); });
+    setTimeout(startTyping, 2000);
+  } else {
+    startTyping();
+  }
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitTypedLayout, 150);
+  });
 
   /* ---------------- Canvas particles ---------------- */
   (function () {

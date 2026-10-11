@@ -309,6 +309,7 @@ body {
   letter-spacing: -2px;
   margin-bottom: 20px;
 }
+.typed-wrap { display: inline-block; }
 .gradient-text {
   background: var(--accent-grad);
   -webkit-background-clip: text;
@@ -978,7 +979,7 @@ body {
 }
 .img-arrow {
   position: absolute;
-  top: 42%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 4;
   width: 46px;

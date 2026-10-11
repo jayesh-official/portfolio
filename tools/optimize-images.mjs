@@ -48,7 +48,7 @@ async function avatar() {
 
 async function certificates() {
   let total = 0;
-  for (let n = 1; n <= 4; n++) {
+  for (let n = 1; n <= 5; n++) {
     const src = `img/certificates/${n}.png`;
     const before = statSync(src).size;
     const buf = await sharp(readFileSync(src))

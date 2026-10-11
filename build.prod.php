@@ -277,7 +277,7 @@ $imgMap = [
     'favicon.png'         => 'img/favicon.png',
     'apple-touch-icon.png' => 'img/apple-touch-icon.png',
 ];
-for ($n = 1; $n <= 4; $n++)  $imgMap["certificates/$n.png"] = "img/certificates/$n.png";
+for ($n = 1; $n <= 5; $n++)  $imgMap["certificates/$n.png"] = "img/certificates/$n.png";
 for ($n = 1; $n <= 15; $n++) $imgMap["laracon/$n.jpg"]     = "img/laracon/$n.jpg";
 
 foreach ($imgMap as $rel => $src) {

@@ -336,7 +336,9 @@ body {
   background: linear-gradient(transparent 62%, rgba(43,230,167,0.28) 62%);
   padding: 0 2px;
 }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-actions .btn { display: inline-flex; align-items: center; justify-content: center; }
+.hero-actions .btn-glow { border: 1px solid transparent; }
 
 .hero-stats { display: flex; gap: 38px; flex-wrap: wrap; }
 .stat-item p {
@@ -1132,6 +1134,7 @@ body {
 .contact-list li a i:first-child {
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1141,6 +1144,7 @@ body {
   font-size: 1rem;
   background: var(--card);
 }
+.contact-list li a span { min-width: 0; overflow-wrap: anywhere; }
 .contact-list li a .arr { margin-left: auto; color: var(--muted-2); font-size: 0.85rem; transition: all 0.2s ease; }
 .contact-list li a:hover .arr { color: var(--green); transform: translateX(4px); }
 .contact-list li a:hover { padding-left: 10px; border-color: rgba(43,230,167,0.35); }

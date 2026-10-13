@@ -31,8 +31,9 @@ on missing partials and print output/size summaries. There is nothing else to ru
   3. the nav links in `partials/header.html`
 - **New images must be added to the hardcoded `$imgMap` in `build.prod.php:272`**,
   otherwise the file silently never ships to `dist/` (build only WARNs).
-  Reference counts are hardcoded: `img/laracon/{1..15}.jpg`, `img/certificates/{1..4}.png`.
-  `tools/optimize-images.mjs` hardcodes the same counts and **overwrites source images**.
+  Reference counts are hardcoded: `img/laracon/{1..15}.jpg`, `img/certificates/{1..5}.png`.
+  `tools/optimize-images.mjs` hardcodes the same counts and **overwrites source images**
+  (all three loops live in `build.prod.php:280-281` and `tools/optimize-images.mjs`).
 - **SEO/JSON-LD lives in `build.prod.php`, not in partials**: `SITE_URL`, `SITE_TITLE`,
   description/keywords, JSON-LD `email`/`sameAs`, and the hardcoded `TODAY` sitemap date
   are all constants near the top of that file. Dev builds have a different `<head>`.

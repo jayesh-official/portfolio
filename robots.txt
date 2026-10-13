@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jayesh-official.github.io/portfolio/sitemap.xml
